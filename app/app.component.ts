@@ -8,21 +8,11 @@ import { Keg } from './keg.model'
     <h1>Tap Room</h1>
     <h3>What's on Tap?</h3>
 
-    <keg-list [childKegList]="masterKegList"></keg-list>
-
+    <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)"></keg-list>
     <hr>
-    <div *ngIf="selectedKeg">
-      <h4>Edit {{selectedKeg.name}}</h4>
-      <label>Enter name of this beer</label>
-      <input type = "text" [(ngModel)]="selectedKeg.name">
-      <label>Enter Name of Brewery</label>
-      <input type = "text" [(ngModel)]="selectedKeg.brand">
-      <label>Enter Price of the beer</label>
-      <input type = "float" [(ngModel)]="selectedKeg.price">
-      <label>Enter ABV of the beer</label>
-      <input type = "float" [(ngModel)]="selectedKeg.abv">
-      <button (click)="finishedEditing()">Done</button>
-    </div>
+    <edit-keg [childSelectedKeg]="selectedKeg" (finishedEditingSender)="finishedEditing()"></edit-keg>
+
+    <new-keg (newKegSender)="addKeg($event)"></new-keg>
   </div>
   `
 })
@@ -56,13 +46,17 @@ export class AppComponent {
     currentKeg.pints = pintsPostsale;
   }
 
-  edit(currentKeg) {
+  editKeg(currentKeg) {
     this.selectedKeg = currentKeg;
     console.log(this.selectedKeg);
   }
 
   finishedEditing() {
     this.selectedKeg = null;
+  }
+
+  addKeg(newKeg: Keg) {
+    this.masterKegList.push(newKeg);
   }
 
 }
