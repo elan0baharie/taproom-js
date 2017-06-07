@@ -5,7 +5,7 @@ import { Keg } from './keg.model';
   selector: 'keg-list',
   template: `
   <select (change)="onChange($event.target.value)">
-    <option value="allKegs" selected="selected">All Kegs</option>
+    <option value="allKegs" selected="selected">Full Kegs</option>
     <option value="lowBeer" >Low Beer</option>
   </select>
   <ul>
