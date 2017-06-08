@@ -10,11 +10,13 @@ import { Keg } from './keg.model';
      <input #newTitle>
      <label>Enter the Brewery the keg is from:</label>
      <input #newBrand>
+     <label>Enter the Brewery the keg is from:</label>
+     <input #newStyle>
      <label>Enter price of the beer:</label>
      <input #newPrice>
      <label>Enter the ABV of the keg:</label>
      <input #newAbv>
-     <button (click)="submitForm(newTitle.value, newBrand.value, newPrice.value, newAbv.value); newTitle.value=''; newBrand.value=''; newPrice.value=''; newAbv.value='';">Submit</button>
+     <button (click)="submitForm(newTitle.value, newBrand.value, newStyle.value, newPrice.value, newAbv.value); newTitle.value=''; newBrand.value=''; newPrice.value=''; newAbv.value='';">Submit</button>
    </div>
 
   `
@@ -23,8 +25,8 @@ import { Keg } from './keg.model';
 export class NewKegComponent {
   @Output() newKegSender = new EventEmitter();
 
-  submitForm(title: string, brand: string, price: number, abv: number) {
-    var newKeg: Keg = new Keg(title, brand, price, abv);
+  submitForm(title: string, brand: string, style: string, price: number, abv: number) {
+    var newKeg: Keg = new Keg(title, brand, style, price, abv);
     this.newKegSender.emit(newKeg);
   }
 }

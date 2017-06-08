@@ -5,6 +5,7 @@ import { Keg } from './keg.model'
   selector: 'app-root',
   template: `
   <div class="container">
+    <tap-header></tap-header>
     <h1>Tap Room</h1>
     <h3>What's on Tap?</h3>
 
@@ -20,23 +21,23 @@ import { Keg } from './keg.model'
 export class AppComponent {
 
   masterKegList: Keg[] = [
-    new Keg('Brune', 'Westmalle', 6, 7),
+    new Keg('Brune', 'Westmalle', 'ale', 6, 7),
 
-    new Keg('Tremens', 'Delirium', 5, 8.5),
+    new Keg('Tremens', 'Delirium', 'ale', 5, 8.5),
 
-    new Keg('African Amber', 'Mac & Jacks', 5, 5.2),
+    new Keg('African Amber', 'Mac & Jacks', 'ale', 5, 5.2),
 
-    new Keg('Blueberry Kambucha', 'Mystique', 5, 7.2),
+    new Keg('Blueberry Kambucha', 'Mystique', 'kambucha', 5, 7.2),
 
-    new Keg('Mischief Maker', 'Schilling', 4, 5),
+    new Keg('Mischief Maker', 'Schilling', 'cider', 4, 5),
 
-    new Keg('Dystopian State', 'Entropy', 7, 10.5),
+    new Keg('Dystopian State', 'Entropy', 'ale', 7, 10.5),
 
-    new Keg('Bellingham Blonde', 'Boundary Bay', 5, 5.1),
+    new Keg('Bellingham Blonde', 'Boundary Bay', 'beer', 5, 5.1),
 
-    new Keg('Goose IPA', 'Goose Island', 6, 5.9),
+    new Keg('Goose IPA', 'Goose Island', 'ale', 6, 5.9),
 
-    new Keg('Old Chub Nitro', 'Oskar Blues', 6, 6.9)
+    new Keg('Old Chub Nitro', 'Oskar Blues', 'ale', 6, 6.9)
   ];
   selectedKeg = null;
 

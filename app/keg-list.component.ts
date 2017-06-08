@@ -8,10 +8,20 @@ import { Keg } from './keg.model';
     <option value="allKegs" selected="selected">Full Kegs</option>
     <option value="lowBeer" >Low Beer</option>
   </select>
+
+  <select (change)="onStyleChange($event.target.value)">
+    <option value="allStyles" selected="selected">All Styles</option>
+    <option value="ale">Ale</option>
+    <option value="beer">Beer</option>
+    <option value="cider">Cider</option>
+    <option value="kambucha">Kambucha</option>
+  </select>
+
   <ul>
-    <li *ngFor="let currentKeg of childKegList | beerLevel:filterByBeerLevel">{{currentKeg.name}} by {{currentKeg.brand}} price is <span [class]="priceColor(currentKeg)">$ {{currentKeg.price}} </span> abv <span [class]="abvColor(currentKeg)">{{currentKeg.abv}}%</span>
-     <button class="click btn btn-success"  (click)="editButtonHasBeenClicked(currentKeg)">Edit</button>
-     <button class="btn btn-default" (click)="pour(currentKeg)">Pint</button> <button class="btn btn-default" (click)="pourGrowler(currentKeg)">Growler</button> <button class="btn btn-default" (click)="pourLargeGrowler(currentKeg)">Large Growler</button> {{currentKeg.pints}}</li>
+    <li *ngFor="let currentKeg of childKegList | beerLevel:filterByBeerLevel | beerStyle:filterByBeerStyle">{{currentKeg.name}} by {{currentKeg.brand}}, the style is {{currentKeg.style}} and costs <span [class]="priceColor(currentKeg)">$ {{currentKeg.price}} </span> abv <span [class]="abvColor(currentKeg)">{{currentKeg.abv}}%</span>
+     <button class="click" class="click btn btn-success"  (click)="editButtonHasBeenClicked(currentKeg)">Edit</button>
+     <button class="btn btn-default" (click)="pour(currentKeg)">Pint</button>
+     <button class="btn btn-default" (click)="pourGrowler(currentKeg)">Growler</button> <button class="btn btn-default" (click)="pourLargeGrowler(currentKeg)">Large Growler</button> {{currentKeg.pints}}</li>
   </ul>
   `
 })
@@ -24,6 +34,7 @@ export class KegListComponent {
   @Output() pourLargeGrowlerSender = new EventEmitter();
 
   filterByBeerLevel: string = "allKegs";
+  filterByBeerStyle: string = "allStyles";
 
   editButtonHasBeenClicked(kegToEdit: Keg) {
     this.clickSender.emit(kegToEdit);
@@ -60,5 +71,9 @@ export class KegListComponent {
 
   onChange(beerLevel) {
     this.filterByBeerLevel = beerLevel;
+  }
+
+  onStyleChange(style) {
+    this.filterByBeerStyle = style;
   }
 }
