@@ -8,7 +8,7 @@ import { Keg } from './keg.model'
     <h1>Tap Room</h1>
     <h3>What's on Tap?</h3>
 
-    <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)" (pourSender)="pour($event)"></keg-list>
+    <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)" (pourSender)="pour($event)" (pourGrowlerSender)="pourGrowler($event)" (pourLargeGrowlerSender)="pourLargeGrowler($event)"></keg-list>
     <hr>
     <edit-keg [childSelectedKeg]="selectedKeg" (finishedEditingSender)="finishedEditing()"></edit-keg>
 
@@ -43,6 +43,18 @@ export class AppComponent {
   pour(currentKeg) {
     var pintsPresale = currentKeg.pints;
     var pintsPostsale = pintsPresale - 1;
+    currentKeg.pints = pintsPostsale;
+  }
+
+  pourGrowler(currentKeg) {
+    var pintsPresale = currentKeg.pints;
+    var pintsPostsale = pintsPresale - 2;
+    currentKeg.pints = pintsPostsale;
+  }
+
+  pourLargeGrowler(currentKeg) {
+    var pintsPresale = currentKeg.pints;
+    var pintsPostsale = pintsPresale - 4;
     currentKeg.pints = pintsPostsale;
   }
 

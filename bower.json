@@ -3,7 +3,7 @@
   "description": "",
   "main": "gulpfile.js",
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/jessehoareevans/taproom",
   "ignore": [
     "**/.*",
     "node_modules",
